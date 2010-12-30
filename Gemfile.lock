@@ -2,11 +2,23 @@ GEM
   remote: http://rubygems.org/
   specs:
     blankslate (2.1.2.3)
+    diff-lcs (1.1.2)
+    flexmock (0.8.11)
     parslet (1.0.0)
       blankslate (~> 2.1.2.3)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-core (2.3.1)
+    rspec-expectations (2.3.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  flexmock
   parslet (~> 1.0)
+  rspec (~> 2)

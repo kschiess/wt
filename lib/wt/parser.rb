@@ -2,14 +2,21 @@
 require 'parslet'
 
 class Wt::Parser < Parslet::Parser
-  rule(:expression) { mexpression >> (c('+-') >> expression).maybe }
-  rule(:mexpression) { atom >> (c('*/') >> mexpression).maybe }
-  rule(:atom) { integer | s('(') >> expression >> s(')') }
-  
-  rule(:integer) { c('0-9') }
+  rule(:expression)   { 
+    assignment |
+    aexpression }
     
-  rule(:space?) { space.maybe }
-  rule(:space)  { match['\\s'].repeat }
+  rule(:assignment)   { identifier >> s('=') >> expression }
+    
+  rule(:aexpression)  { mexpression >> (c('+-') >> expression).maybe }
+  rule(:mexpression)  { atom >> (c('*/') >> mexpression).maybe }
+  rule(:atom)         { integer | s('(') >> expression >> s(')') }
+  
+  rule(:identifier)   { match['a-z'] >> match['\w\d'].repeat >> space? }
+  rule(:integer)      { c('0-9') }
+    
+  rule(:space?)       { space.maybe }
+  rule(:space)        { match['\\s'].repeat }
 private
   # Defines a string followed by any number of spaces. 
   #

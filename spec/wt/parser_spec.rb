@@ -5,7 +5,19 @@ describe Wt::Parser do
   
   RSpec::Matchers.define :parse do |exp|
     match do |parser|
-      parser.parse(exp)
+      begin
+        parser.parse(exp)
+        true
+      rescue Parslet::ParseFailed
+        false
+      end
+    end
+    failure_message_for_should do |parser|
+      begin
+        parser.parse(exp)
+      rescue Parslet::ParseFailed => b
+        parser.error_tree.to_s
+      end
     end
   end
   
@@ -17,5 +29,10 @@ describe Wt::Parser do
     it { should parse("1/2") }
     it { should parse('1*2 + 3') }
     it { should parse('1 * (1 + 3)') }
+  end
+  
+  context "assignment" do
+    subject { parser.expression }
+    it { should parse('a = 1') }
   end
 end

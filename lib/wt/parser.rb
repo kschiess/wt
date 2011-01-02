@@ -17,7 +17,9 @@ class Wt::Parser < Parslet::Parser
     atom }
   rule(:atom)         { integer | s('(') >> expression >> s(')') }
   
-  rule(:identifier)   { (match['a-z'] >> match['\w\d'].repeat).as(:ident) >> space? }
+  rule(:identifier)   { 
+    (match['a-z'] >> match['\w\d'].repeat).as(:ident) >> space? 
+  }
   rule(:integer)      { c('0-9').as(:int) }
     
   rule(:space?)       { space.maybe }

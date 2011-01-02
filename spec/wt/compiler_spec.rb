@@ -10,4 +10,9 @@ describe Wt::Compiler do
     
     it { should == '1 2 add'}
   end
+  context "assignment" do
+    let(:source) { 'a = 1' }
+    
+    it { should == '/a 1 def a'}
+  end
 end

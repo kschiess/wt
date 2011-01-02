@@ -21,5 +21,8 @@ module Wt::AST
   end
   
   class Assign < Struct.new(:ident, :exp)
+    def compile
+      "/#{ident} #{exp.compile} def #{ident}"
+    end
   end
 end

@@ -4,5 +4,24 @@ $:.unshift File.dirname(__FILE__) + "/../lib"
 require 'wt'
 
 compiler = Wt::Compiler.new()
-p compiler.compile(ARGV.join(' '))
+output = compiler.compile(ARGV.join(' '))
+
+puts %Q{
+  %!PS
+  /Courier              % name the desired font
+  20 selectfont         % choose the size in points and establish 
+                        % the font as the current one
+  72 500 moveto         % position the current point at 
+                        % coordinates 72, 500 (the origin is at the 
+                        % lower-left corner of the page)
+
+  /nstr 7 string def
+  /prt-n % stack: n
+  { nstr cvs show } def
+
+  (the answer is ) show
+  #{output} prt-n
+
+  showpage             % print all on the page
+}
 

@@ -6,14 +6,19 @@ class Wt::Parser < Parslet::Parser
     assignment |
     aexpression }
     
-  rule(:assignment)   { identifier >> s('=') >> expression }
+  rule(:assignment)   { identifier >> s('=') >> expression.as(:exp) }
     
-  rule(:aexpression)  { mexpression >> (c('+-') >> expression).maybe }
-  rule(:mexpression)  { atom >> (c('*/') >> mexpression).maybe }
+  rule(:aexpression)  { 
+    mexpression.as(:left) >> c('+-').as(:op) >> expression.as(:right) |
+    mexpression 
+  }
+  rule(:mexpression)  { 
+    atom.as(:left) >> c('*/').as(:op) >> mexpression.as(:right) |
+    atom }
   rule(:atom)         { integer | s('(') >> expression >> s(')') }
   
-  rule(:identifier)   { match['a-z'] >> match['\w\d'].repeat >> space? }
-  rule(:integer)      { c('0-9') }
+  rule(:identifier)   { (match['a-z'] >> match['\w\d'].repeat).as(:ident) >> space? }
+  rule(:integer)      { c('0-9').as(:int) }
     
   rule(:space?)       { space.maybe }
   rule(:space)        { match['\\s'].repeat }

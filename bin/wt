@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.dirname(__FILE__) + "/../lib"
+require 'wt'
+
+compiler = Wt::Compiler.new()
+p compiler.compile(ARGV.join(' '))
+

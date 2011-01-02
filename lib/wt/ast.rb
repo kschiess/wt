@@ -9,7 +9,10 @@ module Wt::AST
   
   class Expression < Struct.new(:left, :op, :right)
     OP_TABLE = {
-      '+' => 'add'
+      '+' => 'add', 
+      '-' => 'sub', 
+      '*' => 'mul', 
+      '/' => 'div', 
     }
     
     def compile

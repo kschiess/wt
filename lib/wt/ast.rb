@@ -6,4 +6,7 @@ module Wt::AST
   
   class Expression < Struct.new(:left, :op, :right)
   end
+  
+  class Assign < Struct.new(:ident, :exp)
+  end
 end

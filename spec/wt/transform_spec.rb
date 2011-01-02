@@ -16,4 +16,9 @@ describe Wt::Transform do
     
     it { should == Expression.new('l', '+', 'r') }
   end
+  describe "assignments (ident: 'a', exp: ...)" do
+    let(:tree) { {ident: 'a', exp: 'e'} }
+
+    it { should == Assign.new('a', 'e') }
+  end
 end

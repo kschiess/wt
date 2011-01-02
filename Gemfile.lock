@@ -1,11 +1,16 @@
+GIT
+  remote: git://github.com/kschiess/parslet
+  revision: c140a7b5f04cafaf23cad29c6e7c9656777063d1
+  specs:
+    parslet (1.1.0)
+      blankslate (~> 2.1.2.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
     blankslate (2.1.2.3)
     diff-lcs (1.1.2)
     flexmock (0.8.11)
-    parslet (1.0.0)
-      blankslate (~> 2.1.2.3)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
@@ -20,5 +25,5 @@ PLATFORMS
 
 DEPENDENCIES
   flexmock
-  parslet (~> 1.0)
+  parslet!
   rspec (~> 2)

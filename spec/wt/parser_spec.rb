@@ -1,25 +1,9 @@
 require 'spec_helper'
 
+require 'parslet/rig/rspec'
+
 describe Wt::Parser do
   let(:parser) { described_class.new }
-  
-  RSpec::Matchers.define :parse do |exp|
-    match do |parser|
-      begin
-        parser.parse(exp)
-        true
-      rescue Parslet::ParseFailed
-        false
-      end
-    end
-    failure_message_for_should do |parser|
-      begin
-        parser.parse(exp)
-      rescue Parslet::ParseFailed => b
-        parser.error_tree.to_s
-      end
-    end
-  end
   
   context "simple arithmetic expressions" do
     subject { parser.expression }

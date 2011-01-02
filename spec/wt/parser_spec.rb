@@ -11,9 +11,9 @@ describe Wt::Parser do
       as(left: {int: '1'}, right: {int: '2'}, op: '+') }
     it { should parse("1-2").
       as(left: {int: '1'}, right: {int: '2'}, op: '-') }
-    it { should parse("1*2").
+    it { should parse("1 * 2").
       as(left: {int: '1'}, right: {int: '2'}, op: '*') }
-    it { should parse("1/2").
+    it { should parse("1 / 2").
       as(left: {int: '1'}, right: {int: '2'}, op: '/') }
     it { should parse('1*2 + 3') }
     it { should parse('1 * (1 + 3)') }

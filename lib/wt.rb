@@ -4,6 +4,9 @@
 module Wt
 end
 
-require 'wt/ast'
 require 'wt/parser'
+
+require 'wt/ast'
 require 'wt/transform'
+
+require 'wt/compiler'
